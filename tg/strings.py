@@ -6,10 +6,9 @@ TEXT = {
         "🪪 In this bot you can get the id of any group, channel, user or bot\n\n"
         "📤 To use the bot, click on the buttons below and share the chat whose ID you want to know."
         " - In response, the bot will return the ID of the chat you shared\n\n"
-        "> 🇺🇸 To change the language send the /lang command\n\n"
         "> 📝 You can get the ID in many other ways. Send the /help command\n\n"
         "> 🤑 Want to donate to me? Send the /donate command\n\n"
-        "📢 For updates on the bot subscribe to @GetChatID_Updates",
+        "📢 For updates on the bot subscribe to @TeleServices_Api\n\nBot creator: @TechsCoder 👨‍💻",
     },
     "USER": {"en": "👤 User"},
     "BOT": {"en": "🤖 Bot"},
@@ -95,14 +94,12 @@ TEXT = {
         "en": "ℹ️ **Details about the bot**\n\n"
         "Language: [Python](https://www.python.org/) \n"
         "Library: [pyrotgfork](https://telegramplayground.github.io/pyrogram/) \n"
-        "Bot creator: @yehudalev 👨‍💻\n\n"
+        "Bot creator: @TechsCoder 👨‍💻\n\n"
         "Donations: You can support the bot creator with the /donate command\n\n"
-        "The bot is open source on GitHub 🖤\n"
-        "https://github.com/yehuda-lev/Get_Chat_ID_Bot\n\n"
-        "📢 For updates on the bot, subscribe to @GetChatID_Updates,",
+        "📢 For updates on the bot, subscribe to @TeleServices_Api,",
     },
     "BUTTON_DEV": {"en": "Send message👨‍💻"},
-    "LINK_DEV": {"en": "https://t.me/yehudalev"},
+    "LINK_DEV": {"en": "https://t.me/techscoder"},
     "CHOSE_CHAT_TYPE": {"en": "Choose chat type"},
     "BUTTON_ADD_BOT_TO_GROUP": {"en": "Add bot to group"},
     "ADD_BOT_TO_GROUP": {
