@@ -246,16 +246,15 @@ async def delete_sent_messages(client: Client, msg: types.Message):
     try:
         sent_id = msg.text.split(" ")[1]
     except IndexError:
-       await msg.reply("No identifier found for the sent messages")
-return
+        await msg.reply("לא נמצא מזהה של ההודעות שנשלחו")
+        return
 
-if not repository.is_message_sent_exists(sent_id=sent_id):
-    await msg.reply("The identifier is invalid")
-    return
+    if not repository.is_message_sent_exists(sent_id=sent_id):
+        await msg.reply("המזהה אינו תקין")
+        return
 
-sent_messages = repository.get_messages_sent(sent_id=sent_id)
-await msg.reply(f"Deleting {len(sent_messages)} sent messages")
-
+    sent_messages = repository.get_messages_sent(sent_id=sent_id)
+    await msg.reply(f"מוחק {len(sent_messages)} הודעות שנשלחו")
 
     count = 0
     delete = 0
@@ -281,5 +280,4 @@ await msg.reply(f"Deleting {len(sent_messages)} sent messages")
                 f"Error: {e}, chat_id: {sent_message.chat_id}, message_id: {sent_message.message_id}"
             )
 
-    await msg.reply(f"{delete} messages were deleted")
-
+    await msg.reply(f"נמחקו {delete} הודעות")
