@@ -3,6 +3,7 @@ from logging.handlers import RotatingFileHandler
 from pyrogram import Client, raw, __version__
 from flask import Flask
 import threading
+import asyncio  # Added to handle event loops
 
 vj = Flask(__name__)
 
@@ -51,12 +52,19 @@ def run_flask():
 
 def run_bot():
     try:
+        # Create and set a new event loop for this thread
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+
         logging.info(
             f"The bot is up and running on Pyrogram v{__version__} (Layer {raw.all.layer})."
         )
+
+        # Register handlers for Pyrogram
         for handler in HANDLERS:
             app.add_handler(handler)
 
+        # Ensure admins are set up in the repository
         for admin in settings.admins:
             if not repository.is_user_exists(tg_id=admin):
                 repository.create_user(
@@ -66,17 +74,21 @@ def run_bot():
                 if not repository.is_admin(tg_id=admin):
                     repository.update_user(tg_id=admin, admin=True)
 
+        # Run the bot using the new event loop
         app.run()
     except Exception as e:
         logging.error(f"Error during bot execution: {e}")
 
 def main():
+    # Start Flask in a separate thread
     flask_thread = threading.Thread(target=run_flask, daemon=True)
     flask_thread.start()
 
+    # Start the Pyrogram bot in a separate thread with event loop handling
     bot_thread = threading.Thread(target=run_bot, daemon=True)
     bot_thread.start()
 
+    # Wait for both threads to finish
     flask_thread.join()
     bot_thread.join()
 
