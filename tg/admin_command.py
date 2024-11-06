@@ -63,30 +63,6 @@ async def ask_for_who_to_send(_: Client, msg: types.Message):
     )
 
 
-async def asq_message_for_subscribe(_: Client, msg: types.CallbackQuery):
-    match send_to := msg.data.split(":")[-1]:
-        case "users":
-            send_to = send_to
-            text = "כל המשתמשים"
-        case "groups":
-            send_to = send_to
-            text = "כל הקבוצות"
-        case "no":
-            await msg.answer("ההודעה לא תישלח")
-            await msg.message.edit_text("בוטל")
-            return
-        case _:
-            return
-
-    await msg.message.reply(
-        text=f"אנא שלח את ההודעה שתרצה לשלוח ל{text}\n "
-        f"> אם ההודעה תועבר עם קרדיט, הבוט גם יעביר את ההודעה עם קרדיט",
-    )
-    filters.add_listener(
-        tg_id=msg.from_user.id,
-        data={"send_message_to_subscribers": True, "data": send_to},
-    )
-
 async def send_broadcast(_: Client, msg: types.Message):
     tg_id = msg.from_user.id
     send_to: str = filters.user_id_to_state.get(tg_id).get("data")
@@ -117,11 +93,10 @@ async def send_broadcast(_: Client, msg: types.Message):
             break
 
     await msg.reply(
-    text = f"**📣 Starting to send to:** {len((chats if chats is not None else users))} chats\nPlease wait...\n" \
-       f"> Sending identifier: `{sent_id}` can be used to delete the messages sent with the command `/delete {sent_id}`",
-)
-progress = await msg.reply(text=f"**The message is being sent to:** {sent} chats")
-
+        text=f"**📣 מתחיל שליחה ל:** {len((chats if chats is not None else users))} צ'אטים\nאנא המתן...\n"
+        f"> מזהה השליחה: `{sent_id}` ניתן להשתמש בו בכדי למחוק את ההודעות שנשלחו עם הפקודה `/delete {sent_id}`",
+    )
+    progress = await msg.reply(text=f"**ההודעה נשלחת ל:** {sent} צ'אטים")
 
     if users is not None:  # send to users
         for user in users:
@@ -214,8 +189,8 @@ progress = await msg.reply(text=f"**The message is being sent to:** {sent} chats
                 if count_edit + 10 == sent:
                     count_edit += 10
                     await progress.edit_text(
-                        text=f"**The message has been sent to:** {sent} chats",
-
+                        text=f"**ההודעה נשלחה ל:** {sent} צ'אטים",
+                    )
 
                 text_log = f"sent to user: {chat.group_id}, name: {chat.name} username: {chat.username}\n"
                 log_obj.write(text_log)
@@ -238,14 +213,13 @@ progress = await msg.reply(text=f"**The message is being sent to:** {sent} chats
                 continue
 
     text_done = (
-    f"📣 The sending is complete\n\n🔹The message was sent to: {sent} chats\n"
-    f"🔹The message failed in: {failed} chats"
-    f"\n\n🔹Sending identifier: {sent_id}\n"
-    f"🔹Sent on: {time.strftime('%d/%m/%Y')}\n"
-    f"🔹Sent at: {time.strftime('%H:%M:%S')}\n"
-    f"\nYou can delete the messages by sending the command `/delete {sent_id}`"
-)
-
+        f"📣 השליחה הושלמה\n\n🔹ההודעה נשלחה ל: {sent} צ'אטים\n"
+        f"🔹 ההודעה נכשלה ב: {failed} צ'אטים"
+        f"\n\n🔹 מזהה השליחה: {sent_id}\n"
+        f"🔹 נשלח בתאריך: {time.strftime('%d/%m/%Y')}\n"
+        f"🔹 נשלח בשעה: {time.strftime('%H:%M:%S')}\n"
+        f"\nניתן למחוק את ההודעות על ידי שליחת הפקודה `/delete {sent_id}`"
+    )
 
     text_log = f"\n\nSent: {sent}, Failed: {failed}\n Sent_id: {sent_id}\n\n"
     log_obj.write(text_log)
