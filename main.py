@@ -11,12 +11,12 @@ vj = Flask(__name__)
 def hello_world():
     return 'Hello from Tech VJ'
 
-from tg.handlers import HANDLERS
-from db import repository
-from data import config
+from tg.handlers import HANDLERS  # Assuming HANDLERS is defined in tg.handlers
+from db import repository  # Assuming repository is correctly defined in db
+from data import config  # Assuming config is correctly defined in data
 
 # Log configuration
-logging.getLogger("pyrogram").setLevel(logging.WARNING)
+logging.getLogger("pyrogram").setLevel(logging.ERROR)
 
 root_logger = logging.getLogger()
 root_logger.setLevel(level=logging.DEBUG)
@@ -48,14 +48,10 @@ app = Client(
 
 def run_flask():
     from werkzeug.serving import run_simple
-    run_simple('0.0.0.0', 8000, vj, use_reloader=False, use_debugger=False)
+    run_simple('0.0.0.0', 8000, vj, use_reloader=True, use_debugger=True)
 
 def run_bot():
     try:
-        # Ensure the event loop is correctly set for the current thread
-        loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(loop)
-
         logging.info(
             f"The bot is up and running on Pyrogram v{__version__} (Layer {raw.all.layer})."
         )
@@ -74,7 +70,7 @@ def run_bot():
                 if not repository.is_admin(tg_id=admin):
                     repository.update_user(tg_id=admin, admin=True)
 
-        # Run the bot using the new event loop
+        # Run the bot
         app.run()
     except Exception as e:
         logging.error(f"Error during bot execution: {e}")
@@ -84,7 +80,7 @@ def main():
     flask_thread = threading.Thread(target=run_flask, daemon=True)
     flask_thread.start()
 
-    # Start the Pyrogram bot in a separate thread with event loop handling
+    # Start the Pyrogram bot in a separate thread
     bot_thread = threading.Thread(target=run_bot, daemon=True)
     bot_thread.start()
 
