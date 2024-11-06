@@ -25,20 +25,20 @@ async def stats(_: Client, msg: types.Message):  # command /stats
     groups_active = repository.get_groups_count_active()
 
     text = (
-    f"**Bot Statistics**\n"
-    f"**The number of users subscribed to the bot is:** \n"
-    f"Total: {users}\n"
-    f"Active: {users_active}\n"
-    f"Inactive: {users - users_active}\n"
-    f"Business users: {business}\n\n"
-    f"**The number of groups in the bot is:** \n"
-    f"Total: {groups}\n"
-    f"Active: {groups_active}\n"
-    f"Inactive: {groups - groups_active}\n"
-)
-
+        f"**סטטיסטיקות על הבוט**\n"
+        f"**כמות היוזרים המנויים בבוט הם:** \n"
+        f"הכל: {users}\n"
+        f"פעילים: {users_active}\n"
+        f"לא פעילים: {users - users_active}\n"
+        f"משתמשי ביזנס {business}\n\n"
+        f"**כמות הקבוצות בבוט הם:** \n"
+        f"הכל: {groups}\n"
+        f"פעילות: {groups_active}\n"
+        f"לא פעילות: {groups - groups_active}\n"
+    )
 
     await msg.reply(text=text, quote=True)
+
 
 async def ask_for_who_to_send(_: Client, msg: types.Message):
     await msg.reply(
@@ -60,6 +60,31 @@ async def ask_for_who_to_send(_: Client, msg: types.Message):
                 [types.InlineKeyboardButton(text="ביטול", callback_data="send:no")],
             ]
         ),
+    )
+
+
+async def asq_message_for_subscribe(_: Client, msg: types.CallbackQuery):
+    match send_to := msg.data.split(":")[-1]:
+        case "users":
+            send_to = send_to
+            text = "כל המשתמשים"
+        case "groups":
+            send_to = send_to
+            text = "כל הקבוצות"
+        case "no":
+            await msg.answer("ההודעה לא תישלח")
+            await msg.message.edit_text("בוטל")
+            return
+        case _:
+            return
+
+    await msg.message.reply(
+        text=f"אנא שלח את ההודעה שתרצה לשלוח ל{text}\n "
+        f"> אם ההודעה תועבר עם קרדיט, הבוט גם יעביר את ההודעה עם קרדיט",
+    )
+    filters.add_listener(
+        tg_id=msg.from_user.id,
+        data={"send_message_to_subscribers": True, "data": send_to},
     )
 
 
