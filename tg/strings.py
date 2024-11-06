@@ -1,4 +1,4 @@
-default_lang = en
+default_lang = None
 
 TEXT = {
     "WELCOME": {
