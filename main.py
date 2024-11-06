@@ -46,14 +46,14 @@ app = Client(
 )
 
 def run_flask():
-    vj.run()
+    from werkzeug.serving import run_simple
+    run_simple('0.0.0.0', 5000, vj, use_reloader=False, use_debugger=False)
 
 def run_bot():
     try:
         logging.info(
             f"The bot is up and running on Pyrogram v{__version__} (Layer {raw.all.layer})."
         )
-
         for handler in HANDLERS:
             app.add_handler(handler)
 
@@ -71,10 +71,14 @@ def run_bot():
         logging.error(f"Error during bot execution: {e}")
 
 def main():
-    flask_thread = threading.Thread(target=run_flask)
+    flask_thread = threading.Thread(target=run_flask, daemon=True)
     flask_thread.start()
 
-    run_bot()
+    bot_thread = threading.Thread(target=run_bot, daemon=True)
+    bot_thread.start()
+
+    flask_thread.join()
+    bot_thread.join()
 
 if __name__ == "__main__":
     main()
