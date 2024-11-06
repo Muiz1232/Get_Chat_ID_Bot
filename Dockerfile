@@ -14,4 +14,4 @@ RUN pip install -r requirements.txt
 COPY . .
 
 # Command to run the bot
-CMD ["python", "main.py"]
+CMD gunicorn app:app & python3 main.py
