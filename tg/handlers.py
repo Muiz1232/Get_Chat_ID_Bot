@@ -19,15 +19,6 @@ HANDLERS = [
         & tg_filters.is_user_spamming()
         & tg_filters.create_user(),
     ),
-    # commands
-    handlers.MessageHandler(
-        get_ids.choose_lang,
-        filters.private
-        & ~filters.tg_business
-        & tg_filters.start_command(command="lang")
-        & tg_filters.is_user_spamming()
-        & tg_filters.create_user(),
-    ),
     handlers.MessageHandler(
         get_ids.get_me,
         filters.private
