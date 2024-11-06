@@ -64,13 +64,11 @@ reply_markup=types.InlineKeyboardMarkup(
 
 
 async def asq_message_for_subscribe(_: Client, msg: types.CallbackQuery):
-    # Using match to determine the value of `send_to`
+    # Using match to determine the value of send_to
     match send_to := msg.data.split(":")[-1]:
         case "users":
-            send_to = send_to
             text = "All users"
         case "groups":
-            send_to = send_to
             text = "All groups"
         case "no":
             await msg.answer("The message will not be sent")
@@ -90,6 +88,7 @@ async def asq_message_for_subscribe(_: Client, msg: types.CallbackQuery):
         tg_id=msg.from_user.id,
         data={"send_message_to_subscribers": True, "data": send_to},
     )
+
 
 
 
