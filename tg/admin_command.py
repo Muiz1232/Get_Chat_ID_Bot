@@ -64,26 +64,24 @@ reply_markup=types.InlineKeyboardMarkup(
 
 
 async def asq_message_for_subscribe(_: Client, msg: types.CallbackQuery):
-    # Using match to determine the value of send_to
     match send_to := msg.data.split(":")[-1]:
         case "users":
-            text = "All users"
+            send_to = send_to
+            text = "כל המשתמשים"
         case "groups":
-            text = "All groups"
+            send_to = send_to
+            text = "כל הקבוצות"
         case "no":
-            await msg.answer("The message will not be sent")
-            await msg.message.edit_text("Cancelled")
+            await msg.answer("ההודעה לא תישלח")
+            await msg.message.edit_text("בוטל")
             return
         case _:
             return
 
-    # Reply to the user with a prompt message
     await msg.message.reply(
-        text=f"Please send the message you would like to send to {text}\n "
-        f"> If the message is forwarded with credit, the bot will also forward it with credit",
+        text=f"אנא שלח את ההודעה שתרצה לשלוח ל{text}\n "
+        f"> אם ההודעה תועבר עם קרדיט, הבוט גם יעביר את ההודעה עם קרדיט",
     )
-
-    # Add a listener for the action
     filters.add_listener(
         tg_id=msg.from_user.id,
         data={"send_message_to_subscribers": True, "data": send_to},
