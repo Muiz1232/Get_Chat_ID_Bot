@@ -42,23 +42,27 @@ app = Client(
 
 
 def main():
-    logging.info(
-        f"The bot is up and running on Pyrogram v{__version__} (Layer {raw.all.layer})."
-    )
+    try:
+        logging.info(
+            f"The bot is up and running on Pyrogram v{__version__} (Layer {raw.all.layer})."
+        )
 
-    for handler in HANDLERS:
-        app.add_handler(handler)
+        for handler in HANDLERS:
+            app.add_handler(handler)
 
-    for admin in settings.admins:
-        if not repository.is_user_exists(tg_id=admin):
-            repository.create_user(
-                tg_id=admin, name="admin", admin=True, language_code="he"
-            )
-        else:
-            if not repository.is_admin(tg_id=admin):
-                repository.update_user(tg_id=admin, admin=True)
+        for admin in settings.admins:
+            if not repository.is_user_exists(tg_id=admin):
+                repository.create_user(
+                    tg_id=admin, name="admin", admin=True, language_code="he"
+                )
+            else:
+                if not repository.is_admin(tg_id=admin):
+                    repository.update_user(tg_id=admin, admin=True)
 
-    app.run()
+        app.run()
+    except Exception as e:
+        logging.error(f"Error during bot execution: {e}")
+
 
 
 if __name__ == "__main__":
