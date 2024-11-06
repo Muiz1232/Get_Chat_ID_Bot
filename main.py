@@ -3,7 +3,7 @@ from logging.handlers import RotatingFileHandler
 from pyrogram import Client, raw, __version__
 from flask import Flask
 import threading
-import asyncio  # Added to handle event loops
+import asyncio  # Import asyncio to manage event loops
 
 vj = Flask(__name__)
 
@@ -52,7 +52,7 @@ def run_flask():
 
 def run_bot():
     try:
-        # Create and set a new event loop for this thread
+        # Ensure the event loop is correctly set for the current thread
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
 
