@@ -48,7 +48,8 @@ app = Client(
 
 def run_flask():
     from werkzeug.serving import run_simple
-    run_simple('0.0.0.0', 8000, vj, use_reloader=True, use_debugger=True)
+    # Disable reloader and debugger when running Flask in a separate thread
+    run_simple('0.0.0.0', 8000, vj, use_reloader=False, use_debugger=False)
 
 def run_bot():
     try:
@@ -80,13 +81,11 @@ def main():
     flask_thread = threading.Thread(target=run_flask, daemon=True)
     flask_thread.start()
 
-    # Start the Pyrogram bot in a separate thread
-    bot_thread = threading.Thread(target=run_bot, daemon=True)
-    bot_thread.start()
+    # Start the Pyrogram bot using asyncio in the main thread
+    asyncio.run(run_bot())  # Run bot directly in the main thread with asyncio
 
-    # Wait for both threads to finish
+    # Wait for the Flask thread to finish
     flask_thread.join()
-    bot_thread.join()
 
 if __name__ == "__main__":
     main()
