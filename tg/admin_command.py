@@ -40,7 +40,6 @@ async def stats(_: Client, msg: types.Message):  # command /stats
 
     await msg.reply(text=text, quote=True)
 
-
 async def ask_for_who_to_send(_: Client, msg: types.Message):
     await msg.reply(
        text="Who would you like to send a message to?",
@@ -86,9 +85,6 @@ async def asq_message_for_subscribe(_: Client, msg: types.CallbackQuery):
         tg_id=msg.from_user.id,
         data={"send_message_to_subscribers": True, "data": send_to},
     )
-
-
-
 
 async def send_broadcast(_: Client, msg: types.Message):
     tg_id = msg.from_user.id
