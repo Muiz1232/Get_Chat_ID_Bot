@@ -48,7 +48,7 @@ app = Client(
 
 def run_flask():
     from werkzeug.serving import run_simple
-    run_simple('0.0.0.0', 5000, vj, use_reloader=False, use_debugger=False)
+    run_simple('0.0.0.0', 8000, vj, use_reloader=False, use_debugger=False)
 
 def run_bot():
     try:
