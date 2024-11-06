@@ -117,14 +117,7 @@ def get_user(*, tg_id: int) -> User:
 
 @cache.cachable(cache_name="get_user_language", params="tg_id")
 def get_user_language(*, tg_id: int) -> str:
-    """
-    Get user language by tg id
-    :param tg_id: the user id
-    :return: str
-    """
-
-    with get_session() as session:
-        return session.query(User.language_code).filter(User.tg_id == tg_id).scalar()
+        return "en"
 
 
 # group
