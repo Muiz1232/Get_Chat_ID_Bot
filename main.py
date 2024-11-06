@@ -1,7 +1,13 @@
 import logging
 from logging.handlers import RotatingFileHandler
 from pyrogram import Client, raw, __version__
+from flask import Flask
+vj = Flask(__name__)
 
+@vj.route('/')
+def hello_world():
+    return 'Hello from Tech VJ'
+    
 from tg.handlers import HANDLERS
 from db import repository
 from data import config
@@ -60,6 +66,7 @@ def main():
                     repository.update_user(tg_id=admin, admin=True)
 
         app.run()
+        vj.run()
     except Exception as e:
         logging.error(f"Error during bot execution: {e}")
 
