@@ -42,24 +42,25 @@ async def stats(_: Client, msg: types.Message):  # command /stats
 
 async def ask_for_who_to_send(_: Client, msg: types.Message):
     await msg.reply(
-       text="Who would you like to send a message to?",
-quote=True,
-reply_markup=types.InlineKeyboardMarkup(
-    [
-        [
-            types.InlineKeyboardButton(
-                text="To all users", callback_data="send:users"
-            )
-        ],
-        [
-            types.InlineKeyboardButton(
-                text="To all groups",
-                callback_data="send:groups",
-            )
-        ],
-        [types.InlineKeyboardButton(text="Cancel", callback_data="send:no")],
-    ]
-),
+        text="למי ברצונך לשלוח הודעה?",
+        quote=True,
+        reply_markup=types.InlineKeyboardMarkup(
+            [
+                [
+                    types.InlineKeyboardButton(
+                        text="לכל המשתמשים", callback_data="send:users"
+                    )
+                ],
+                [
+                    types.InlineKeyboardButton(
+                        text="לכל הקבוצות",
+                        callback_data="send:groups",
+                    )
+                ],
+                [types.InlineKeyboardButton(text="ביטול", callback_data="send:no")],
+            ]
+        ),
+    )
 
 
 async def asq_message_for_subscribe(_: Client, msg: types.CallbackQuery):
