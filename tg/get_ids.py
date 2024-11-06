@@ -16,7 +16,7 @@ async def get_reply_markup(client: Client) -> types.InlineKeyboardMarkup:
         [
             [
                 types.InlineKeyboardButton(
-                    text="Powered by 'Get Chat ID Bot' 🪪",
+                    text="Powered by 'TECHS CODER' 🪪",
                     url=f"https://t.me/{client.me.username}?start=start",
                 )
             ]
