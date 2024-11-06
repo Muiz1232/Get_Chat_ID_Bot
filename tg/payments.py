@@ -95,13 +95,14 @@ async def send_thanks_for_support(client: Client, msg: types.Message):
     )
 
     text_to_admin = (
-        f"**🎉 תרומה חדשה 🎉**\n"
-        f"מאת: __{msg.from_user.full_name}__\n"
-        f"> מזהה: `{tg_id}`\n"
-        f"> שם משתמש: @{msg.from_user.username}\n"
-        f"> שפה: {lang}\n"
-        f"סכום: {payment.total_amount} ⭐️"
-    )
+    f"**🎉 New Donation 🎉**\n"
+    f"From: __{msg.from_user.full_name}__\n"
+    f"> ID: `{tg_id}`\n"
+    f"> Username: @{msg.from_user.username}\n"
+    f"> Language: {lang}\n"
+    f"Amount: {payment.total_amount} ⭐️"
+)
+
 
     await client.send_message(
         chat_id=settings.admin_to_update_of_payment,
