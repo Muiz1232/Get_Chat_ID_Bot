@@ -8,8 +8,8 @@ TEXT = {
 "🚀 **How to Get Started:**\n"
 "1️⃣ Use the interactive buttons below to share the chat you want to identify.\n"
 "2️⃣ Receive the **unique ID** of the shared chat instantly.\n\n"
-"💡 **Pro Tip:** Want to explore other ID retrieval methods? Simply type /help for more information.\n\n"
-"💖 **Support the Bot:** Feeling generous? Show your support by sending the /donate command.\n\n"
+"> 💡 **Pro Tip:** Want to explore other ID retrieval methods? Simply type /help for more information.\n\n"
+"> 💖 **Support the Bot:** Feeling generous? Show your support by sending the /donate command.\n\n"
 "📢 **Stay Updated:** For the latest updates and announcements, subscribe to [@TeleServices_Api](https://t.me/TeleServices_Api).\n\n"
 "👨‍💻 **Bot Creator:** [@TechsCoder](https://t.me/TechsCoder)"
 ,
@@ -96,11 +96,11 @@ TEXT = {
     "ABOUT": {"en": "ℹ️ about"},
     "INFO_ABOUT": {
         "en": "ℹ️ **Bot Details**\n\n"
-"👨‍💻 **Created By:** [@TechsCoder](https://t.me/TechsCoder)\n\n"
+"> 👨‍💻 **Created By:** [@TechsCoder](https://t.me/TechsCoder)\n\n"
 "💖 **Support the Creator:**\n"
 "If you appreciate this bot and want to help it grow, consider donating using the /donate command.\n\n"
 "📢 **Stay Informed:**\n"
-"For the latest updates and features, subscribe to [@TeleServices_Api](https://t.me/TeleServices_Api).\n"
+"> 💎For the latest updates and features, subscribe to [@TeleServices_Api](https://t.me/TeleServices_Api).\n"
 ,
     },
     "BUTTON_DEV": {"en": "Send message👨‍💻"},
