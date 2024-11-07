@@ -2,13 +2,17 @@ default_lang = None
 
 TEXT = {
     "WELCOME": {
-        "en": "Welcome {name} 🤠\n\n"
-        "🪪 In this bot you can get the id of any group, channel, user or bot\n\n"
-        "📤 To use the bot, click on the buttons below and share the chat whose ID you want to know."
-        " - In response, the bot will return the ID of the chat you shared\n\n"
-        "> 📝 You can get the ID in many other ways. Send the /help command\n\n"
-        "> 🤑 Want to donate to me? Send the /donate command\n\n"
-        "📢 For updates on the bot subscribe to @TeleServices_Api\n\nBot creator: @TechsCoder 👨‍💻",
+        "en": "🌟 **Welcome, {name}!** 🤠\n\n"
+"🔍 **Discover Chat IDs Effortlessly**\n"
+"🪪 This bot is your go-to tool for fetching the ID of any **group, channel, user, or bot**.\n\n"
+"🚀 **How to Get Started:**\n"
+"1️⃣ Use the interactive buttons below to share the chat you want to identify.\n"
+"2️⃣ Receive the **unique ID** of the shared chat instantly.\n\n"
+"💡 **Pro Tip:** Want to explore other ID retrieval methods? Simply type /help for more information.\n\n"
+"💖 **Support the Bot:** Feeling generous? Show your support by sending the /donate command.\n\n"
+"📢 **Stay Updated:** For the latest updates and announcements, subscribe to [@TeleServices_Api](https://t.me/TeleServices_Api).\n\n"
+"👨‍💻 **Bot Creator:** [@TechsCoder](https://t.me/TechsCoder)"
+,
     },
     "USER": {"en": "👤 User"},
     "BOT": {"en": "🤖 Bot"},
@@ -91,12 +95,13 @@ TEXT = {
     "INFO_MENU": {"en": "🏘 menu help"},
     "ABOUT": {"en": "ℹ️ about"},
     "INFO_ABOUT": {
-        "en": "ℹ️ **Details about the bot**\n\n"
-        "Language: [Python](https://www.python.org/) \n"
-        "Library: [pyrotgfork](https://telegramplayground.github.io/pyrogram/) \n"
-        "Bot creator: @TechsCoder 👨‍💻\n\n"
-        "Donations: You can support the bot creator with the /donate command\n\n"
-        "📢 For updates on the bot, subscribe to @TeleServices_Api,",
+        "en": "ℹ️ **Bot Details**\n\n"
+"👨‍💻 **Created By:** [@TechsCoder](https://t.me/TechsCoder)\n\n"
+"💖 **Support the Creator:**\n"
+"If you appreciate this bot and want to help it grow, consider donating using the /donate command.\n\n"
+"📢 **Stay Informed:**\n"
+"For the latest updates and features, subscribe to [@TeleServices_Api](https://t.me/TeleServices_Api).\n"
+,
     },
     "BUTTON_DEV": {"en": "Send message👨‍💻"},
     "LINK_DEV": {"en": "https://t.me/techscoder"},
