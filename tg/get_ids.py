@@ -904,10 +904,6 @@ async def send_about(_: Client, msg: types.Message):
     await msg.reply_text(
         text=strings.get_text(key="INFO_ABOUT", lang=lang),
         quote=True,
-        link_preview_options=types.LinkPreviewOptions(
-            url="https://github.com/yehuda-lev/Get_Chat_ID_Bot",
-            show_above_text=True,
-        ),
         reply_markup=types.InlineKeyboardMarkup(
             [
                 [
