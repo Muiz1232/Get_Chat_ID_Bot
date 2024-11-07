@@ -14,7 +14,7 @@ list_of_help: list[list[str]] = [
     ["Request_chat", "Forward", "Story"],
     ["Search_username", "Reply_to_another_chat", "Contact"],
     ["Me", "Group", "Business"],
-    ["Request_admin", "Language"],
+    ["Request_admin"],
 ]
 
 
