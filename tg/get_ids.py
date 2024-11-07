@@ -904,6 +904,7 @@ async def send_about(_: Client, msg: types.Message):
     await msg.reply_text(
         text=strings.get_text(key="INFO_ABOUT", lang=lang),
         quote=True,
+        disable_web_page_preview=True,
         reply_markup=types.InlineKeyboardMarkup(
             [
                 [
