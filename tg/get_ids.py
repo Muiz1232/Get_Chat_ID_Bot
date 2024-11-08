@@ -921,7 +921,7 @@ async def send_about(_: Client, msg: types.Message):
 async def send_privacy_policy(_: Client, msg: types.Message):
     """Send privacy policy"""
 
-    url = "https://telegra.ph/Privacy-Policy-for-GetChatID-IL-BOT-08-01"
+    url = "https://telegra.ph/PRIVACY-POLICY-11-08-121"
     await msg.reply(
         text=url,
         link_preview_options=types.LinkPreviewOptions(
